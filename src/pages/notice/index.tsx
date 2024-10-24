@@ -7,7 +7,6 @@ import { Notice } from "./notice";
 const NoticePage = () => {
 
   const rows : Notice[] = sampleData;
-  console.log("Rows: ", rows); // rows의 타입 확인
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 100 },

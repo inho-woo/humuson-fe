@@ -26,14 +26,14 @@ const DataGridCustom = (props: DataTableInterface.DataGridProps) => {
   const [filteredRows, setFilteredRows] = useState(sampleData);
 
   const handleSearch = () => {
-    const selectedDate = date ? dayjs(date).format('YYYY-MM-DD') : null; // 선택된 날짜
+    const selectedDate = date ? dayjs(date).format('YYYY-MM-DD') : null;
     const filteredData = sampleData.filter((row) => {
       const textMatch = selectValue === "title"
         ? row.title.toLowerCase().includes(textValue.toLowerCase())
         : selectValue === "userId"
         ? row.userId.toLowerCase().includes(textValue.toLowerCase())
         : selectValue === "count"
-        ? row.count.toString().includes(textValue) // count는 숫자이므로 string으로 변환
+        ? row.count.toString().includes(textValue)
         : true;
     
 

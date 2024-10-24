@@ -1,35 +1,10 @@
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Button,
-  Collapse,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import {AppBar,Avatar,Box,Button,Collapse,Divider,Drawer,IconButton,List,ListItemButton,ListItemIcon,ListItemText,Toolbar,Typography} from "@mui/material";
+import {AttachMoney,BarChart,Dashboard,ExpandLess,ExpandMore,Home,PieChart,Send} from "@material-ui/icons";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  AttachMoney,
-  BarChart,
-  Dashboard,
-  ExpandLess,
-  ExpandMore,
-  Home,
-  PieChart,
-  Send,
-} from "@material-ui/icons";
 import { CalendarMonth, Groups3, TextSnippet } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { HeaderInterface } from "./header";
-
 
 const Header= (props: HeaderInterface.HeaderProps) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -39,17 +14,8 @@ const Header= (props: HeaderInterface.HeaderProps) => {
 
 
   const toggleDrawer =
-    (open: boolean) =>
-    (
-      event:
-        | React.MouseEvent<HTMLButtonElement>
-        | React.KeyboardEvent<HTMLButtonElement>
-    ): void => {
-      if (
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
-      ) {
+    (open: boolean) =>(event: | React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>): void => {
+      if (event.type === "keydown" && ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")) {
         return;
       }
       setOpen(open);
@@ -66,7 +32,6 @@ const Header= (props: HeaderInterface.HeaderProps) => {
   const handleHomeClick = () => {
     router.push('/');
   };
-
 
   const handleNoticeClick = () => {
     router.push('/notice');
@@ -162,25 +127,9 @@ const Header= (props: HeaderInterface.HeaderProps) => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Box
-        sx={{
-          flexGrow: 1,
-          border: "1px solid",
-          borderColor: "gray",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <Box sx={{flexGrow: 1,border: "1px solid", borderColor: "gray", display: "flex", alignItems: "center", justifyContent: "space-between"}}>
         <Typography sx={{ marginLeft: "20%" }}>{props.title}</Typography>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            borderColor: "gray",
-            padding: "0 10px",
-          }}
-        >
+        <Box sx={{ display: "flex",alignItems: "center",borderColor: "gray",padding: "0 10px"}}>
           <IconButton sx={{ marginRight: "10px" }} onClick={handleHomeClick}>
             <Home/>
           </IconButton>
