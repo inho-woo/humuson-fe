@@ -12,9 +12,7 @@ const Header= (props: HeaderInterface.HeaderProps) => {
   const [messageOpen, setMessageOpen] = useState<boolean>(false);
   const router = useRouter();
 
-
-  const toggleDrawer =
-    (open: boolean) =>(event: | React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>): void => {
+  const toggleDrawer = (open: boolean) =>(event: | React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>): void => {
       if (event.type === "keydown" && ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")) {
         return;
       }
@@ -29,26 +27,21 @@ const Header= (props: HeaderInterface.HeaderProps) => {
     setMessageOpen(!messageOpen);
   };
 
-  const handleHomeClick = () => {
-    router.push('/');
+  const handlePathClick = (path : string)  => {
+   router.push(path);
   };
-
-  const handleNoticeClick = () => {
-    router.push('/notice');
-  };
-
 
   // 하위 리스트 데이터
   const mainListItems = [
-    { text: "캠페인", icon: <Groups3 /> },
-    { text: "템플릿", icon: <TextSnippet /> },
-    { text: "발송 관리", icon: <PieChart /> },
-    { text: "리포트", icon: <PieChart /> },
-    { text: "통계", icon: <BarChart /> },
-    { text: "정산", icon: <AttachMoney /> },
-    { text: "회원", icon: <Groups3 /> },
-    { text: "PUSH 사용자", icon: <Groups3 /> },
-    { text: "대시보드", icon: <Dashboard /> },
+    { text: "캠페인", icon: <Groups3 />, path: "/campaign" },
+    { text: "템플릿", icon: <TextSnippet />, path: "/template" },
+    { text: "발송 관리", icon: <PieChart />, path: "/shipping" },
+    { text: "리포트", icon: <PieChart />, path: "/report" },
+    { text: "통계", icon: <BarChart />, path: "/statistics" },
+    { text: "정산", icon: <AttachMoney />, path: "/adjustment" },
+    { text: "회원", icon: <Groups3 />, path: "/members" },
+    { text: "PUSH 사용자", icon: <Groups3 />, path: "/push-users" },
+    { text: "대시보드", icon: <Dashboard />, path: "/dashboard" },
   ];
   const DrawerList = (
     <Box sx={{ width: "100%", minWidth:"250px" }}>
@@ -61,10 +54,10 @@ const Header= (props: HeaderInterface.HeaderProps) => {
           {subOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={subOpen} timeout="auto" unmountOnExit>
-          <ListItemButton sx={{ pl: 4 }} onClick={handleNoticeClick}>
+          <ListItemButton sx={{ pl: 4 }} onClick={() => handlePathClick("/notice")}>
             <ListItemText primary="공지사항" />
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={handleHomeClick}>
+          <ListItemButton sx={{ pl: 4 }} onClick={() =>handlePathClick("/qna")}>
             <ListItemText primary="Q&A" />
           </ListItemButton>
         </Collapse>
@@ -77,14 +70,14 @@ const Header= (props: HeaderInterface.HeaderProps) => {
         </ListItemButton>
         <Collapse in={messageOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }} onClick={handleHomeClick}>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => handlePathClick("/send")}>
               <ListItemText primary="발송하기" />
             </ListItemButton>
           </List>
         </Collapse>
         <Divider />
         {mainListItems.map((item) => (
-          <ListItemButton key={item.text} sx={{ pl: 4 }} onClick={handleHomeClick}>
+          <ListItemButton key={item.text} sx={{ pl: 4 }} onClick={() =>handlePathClick(item.path)}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItemButton>
@@ -130,10 +123,10 @@ const Header= (props: HeaderInterface.HeaderProps) => {
       <Box sx={{flexGrow: 1,border: "1px solid", borderColor: "gray", display: "flex", alignItems: "center", justifyContent: "space-between"}}>
         <Typography sx={{ marginLeft: "20%" }}>{props.title}</Typography>
         <Box sx={{ display: "flex",alignItems: "center",borderColor: "gray",padding: "0 10px"}}>
-          <IconButton sx={{ marginRight: "10px" }} onClick={handleHomeClick}>
+          <IconButton sx={{ marginRight: "10px" }} onClick={() => handlePathClick("/")}>
             <Home/>
           </IconButton>
-          <Typography>{props.title ? "/ " + props.subTitle + " /" : ""}</Typography>
+          <Typography>{props.title  && props.subTitle ? "/ " + props.subTitle + " /" : "/"}</Typography>
           <Typography sx={{ marginLeft: "10px" }}>{props.title ? props.title : ""}</Typography>
         </Box>
       </Box>

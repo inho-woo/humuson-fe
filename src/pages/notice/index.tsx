@@ -15,11 +15,12 @@ const NoticePage = () => {
     { field: "date", headerName: "날짜", width: 250 },
     { field: "count", headerName: "조회수", width: 100 },
   ];
-
   return (
-    <Layout title= "공지사항" subTitle="게시판">
-      <DataGridCustom columns={columns} rows={rows} searchField="notice" pageSize={5} />
+    <>
+    <Layout title="공지사항" subTitle="게시판">
+      <DataGridCustom columns={columns} rows={rows} />
     </Layout>
+    </>
   );
 };
 

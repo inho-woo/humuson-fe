@@ -1,19 +1,20 @@
 import React from "react";
-import Header from "./header"; // header 컴포넌트 import
+import Header from "./header";
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title: string;
   subTitle : string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, title, subTitle }) => {
+const Layout = (props : LayoutProps ) => {
   return (
-    <div>
-      <Header title={title} subTitle={subTitle} /> 
-      <main>{children}</main>
-    </div>
+    <>
+      <Header title={props.title} subTitle={props.subTitle}/> 
+      {props.children ? props.children : ""}
+    </>
   );
+  
 };
 
 export default Layout;
