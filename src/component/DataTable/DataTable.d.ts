@@ -1,4 +1,3 @@
-import { Notice } from '@/pages/notice/notice';
 import { GridColDef } from '@mui/x-data-grid';
 
 export namespace DataTableInterface {
