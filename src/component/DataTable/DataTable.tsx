@@ -1,16 +1,6 @@
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import {
-  TextField,
-  Box,
-  Select,
-  MenuItem,
-  Button,
-  Typography,
-  IconButton,
-  Pagination,
-  PaginationItem,
-} from "@mui/material";
+import {TextField,Box,Select,MenuItem,Button,Typography,IconButton} from "@mui/material";
 import { DataTableInterface } from "./DataTable.d";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -28,19 +18,21 @@ const DataGridCustom = (props: DataTableInterface.DataGridProps) => {
   const handleSearch = () => {
     const selectedDate = date ? dayjs(date).format('YYYY-MM-DD') : null;
     const filteredData = sampleData.filter((row) => {
-      const textMatch = selectValue === "title"
+      const textMatch = selectValue == "title"
         ? row.title.toLowerCase().includes(textValue.toLowerCase())
-        : selectValue === "userId"
+        : selectValue == "userId"
         ? row.userId.toLowerCase().includes(textValue.toLowerCase())
-        : selectValue === "count"
+        : selectValue == "count"
         ? row.count.toString().includes(textValue)
+        : selectValue == "date"
+        ? row.date.toString().includes(textValue)
         : true;
-    
+      
+      const rowDate = dayjs(row.date).format('YYYY-MM-DD');
+      const dateMatch = selectedDate ? rowDate == selectedDate : true;
 
-      const dateMatch = selectedDate ? row.date === selectedDate : true;
-
-      return textMatch && dateMatch;
-    });
+    return textMatch && dateMatch;
+  });
 
     setFilteredRows(filteredData);
   };
@@ -115,7 +107,7 @@ const DataGridCustom = (props: DataTableInterface.DataGridProps) => {
               variant="outlined"
               value={textValue}
               onChange={(e) => setTextValue(e.target.value)}
-              sx={{ marginRight: 1 }} // TextField와 IconButton 사이의 간격 조정
+              sx={{ marginRight: 1 }}
             />
             <IconButton
               onClick={handleSearch}
