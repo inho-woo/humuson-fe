@@ -37,37 +37,13 @@ const DataGridCustom = (props: DataTableInterface.DataGridProps) => {
     setFilteredRows(filteredData);
   };
 
-  
   return (
     <>
-      <Box
-        sx={{
-          backgroundColor: "#F4F4F4",
-          width: "90%",
-          maxWidth: "1500px",
-          margin: "0 auto",
-        }}
-      >
+      <Box sx={{ backgroundColor: "#F4F4F4", width: "90%", maxWidth: "1500px", margin: "0 auto"}}>
         <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            marginTop: 2,
-            marginBottom: 3,
-            alignItems: "center",
-            backgroundColor: "#F4F4F4",
-          }}
-        >
+          sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", marginTop: 2, marginBottom: 3, alignItems: "center", backgroundColor: "#F4F4F4"}}>
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"ko"}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                minWidth: "100px",
-                marginRight: 2,
-              }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", minWidth: "100px", marginRight: 2}}>
               <Typography sx={{ marginLeft: 1, marginRight: 2 }}>
                 등록일 기준
               </Typography>
@@ -81,7 +57,6 @@ const DataGridCustom = (props: DataTableInterface.DataGridProps) => {
           <Box sx={{ display: "flex", alignItems: "center", marginRight: 2 }}>
             <Typography>검색조건</Typography>
           </Box>
-
           <Box sx={{ minWidth: "100px", marginRight: 2 }}>
             <Select
               value={selectValue}
@@ -93,15 +68,7 @@ const DataGridCustom = (props: DataTableInterface.DataGridProps) => {
               <MenuItem value="count">조회수</MenuItem>
             </Select>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flex: 1,
-              minWidth: "100px",
-              marginRight: 2,
-            }}
-          >
+          <Box sx={{ display: "flex", alignItems: "center", flex: 1, minWidth: "100px", marginRight: 2}}>
             <TextField
               label="검색어 입력"
               variant="outlined"
@@ -121,14 +88,7 @@ const DataGridCustom = (props: DataTableInterface.DataGridProps) => {
             </IconButton>
           </Box>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: 2,
-          }}
-        >
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 2}}>
           <Typography>전체글: {props.rows.length}개</Typography>
           <Button
             variant="contained"
